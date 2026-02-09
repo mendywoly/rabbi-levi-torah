@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     description:
       "Over 500 recorded Torah classes by Rabbi Levi Wolosow z\"l",
     type: "website",
+    images: [
+      {
+        url: "/rabbi-levi.jpg",
+        width: 800,
+        height: 600,
+        alt: "Rabbi Levi Wolosow z\"l",
+      },
+    ],
   },
 };
 
