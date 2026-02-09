@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rabbi Levi Wolosow Torah Center
+
+A memorial website preserving and sharing the Torah teachings of **Rabbi Levi Yitzchok Wolosow z"l** (1981-2025), Director of Adult Education at Chabad of Western Monmouth County, Manalapan, NJ.
+
+## About
+
+Rabbi Levi left behind over **525 recorded Torah classes** spanning 18 years of teaching. This site organizes and presents his full video library so his teachings can continue to inspire and educate.
+
+### Content includes:
+- **Weekly Parsha** - Verse-by-verse classes on all Torah portions (Genesis through Deuteronomy)
+- **Talmud** - Tractate Sotah
+- **Tanya** - All 4 books (Lekutei Amarim, Shaar HaYichud, Igeres HaTeshuva, Kuntres Acharon)
+- **JLI Courses** - Meditation from Sinai, Outsmarting Antisemitism, Journey of the Soul
+- **Mishnah** - Laws of Mikvah by the Rambam
+- **Tanach** - Yehoshua and more
+
+### Features:
+- Auto-detects the current week's parsha based on the Hebrew calendar
+- Day-of-week labels (Sunday-Shabbat) for daily Torah reading classes
+- All video data stored in a static JSON file (no database needed)
+- Fully statically generated for fast performance
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Updating Video Data
 
-To learn more about Next.js, take a look at the following resources:
+Video data is stored in `src/data/videos.json`. To refresh from YouTube:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+python3 scripts/build_video_data.py
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy
 
-## Deploy on Vercel
+Deploy to [Vercel](https://vercel.com) or any static hosting provider:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx vercel
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- [TypeScript](https://typescriptlang.org)
+- [Tailwind CSS](https://tailwindcss.com)
+
+---
+
+Dedicated to the memory of Rabbi Levi Yitzchok Wolosow z"l - 5 Shevat 5785
