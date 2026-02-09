@@ -10,11 +10,11 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Rabbi Levi Wolosow Torah Center",
+  title: "Rabbi Levi Wolosow",
   description:
     "Continuing the Torah legacy of Rabbi Levi Yitzchok Wolosow z\"l — over 500 recorded classes on Chumash, Talmud, Tanya, and more.",
   openGraph: {
-    title: "Rabbi Levi Wolosow Torah Center",
+    title: "Rabbi Levi Wolosow",
     description:
       "Over 500 recorded Torah classes by Rabbi Levi Wolosow z\"l",
     type: "website",

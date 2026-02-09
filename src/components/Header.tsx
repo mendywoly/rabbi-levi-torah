@@ -21,7 +21,7 @@ export function Header() {
             <h1 className="text-lg font-semibold leading-tight text-primary">
               Rabbi Levi Wolosow
             </h1>
-            <p className="text-xs text-muted">Torah Center</p>
+            <p className="text-xs text-muted">Torah Classes</p>
           </div>
         </Link>
 

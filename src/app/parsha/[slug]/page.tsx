@@ -13,7 +13,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   // For static generation we just return a generic title
   return {
-    title: "Parsha Class | Rabbi Levi Wolosow Torah Center",
+    title: "Parsha Class | Rabbi Levi Wolosow",
   };
 }
 

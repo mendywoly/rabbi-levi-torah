@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getTotalVideoCount, getTotalPlaylistCount } from "@/lib/data";
 
 export const metadata = {
-  title: "About Rabbi Levi Wolosow | Torah Center",
+  title: "About Rabbi Levi Wolosow",
   description:
     "Learn about Rabbi Levi Yitzchok Wolosow z\"l, his life, legacy, and ongoing Torah teachings.",
 };

@@ -5,7 +5,7 @@ import { getCurrentParshaName } from "@/lib/currentParsha";
 import { Playlist } from "@/lib/types";
 
 export const metadata = {
-  title: "Weekly Parsha Classes | Rabbi Levi Wolosow Torah Center",
+  title: "Weekly Parsha Classes | Rabbi Levi Wolosow",
   description:
     "Browse all weekly Torah portion classes by Rabbi Levi Wolosow, organized by book and parsha.",
 };

@@ -8,7 +8,7 @@ import {
 } from "@/lib/types";
 
 export const metadata = {
-  title: "All Classes | Rabbi Levi Wolosow Torah Center",
+  title: "All Classes | Rabbi Levi Wolosow",
   description:
     "Browse all Torah classes by Rabbi Levi Wolosow organized by category.",
 };
