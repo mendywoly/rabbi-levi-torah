@@ -5,6 +5,9 @@ import { getParshaByName } from "@/lib/parsha";
 import { getCurrentParshaName } from "@/lib/currentParsha";
 import { VideoListItem } from "@/components/VideoCard";
 
+// Re-render hourly so the current parsha rolls over without a redeploy.
+export const revalidate = 3600;
+
 export function generateStaticParams() {
   const playlists = getAllPlaylists().filter((p) => p.category === "parsha");
   return playlists.map((p) => ({ slug: slugify(p.name) }));

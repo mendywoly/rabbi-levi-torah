@@ -25,6 +25,9 @@ const CATEGORY_ICONS: Record<Category, string> = {
   other: "💡",
 };
 
+// Re-render hourly so the current parsha rolls over without a redeploy.
+export const revalidate = 3600;
+
 export default function Home() {
   const totalVideos = getTotalVideoCount();
   const stats = getCategoryStats();

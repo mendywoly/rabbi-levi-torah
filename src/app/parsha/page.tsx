@@ -10,6 +10,9 @@ export const metadata = {
     "Browse all weekly Torah portion classes by Rabbi Levi Wolosow, organized by book and parsha.",
 };
 
+// Re-render hourly so the current parsha rolls over without a redeploy.
+export const revalidate = 3600;
+
 export default function ParshaIndex() {
   const parshaPlaylists = getParshaPlaylists();
   const currentParshaName = getCurrentParshaName();
