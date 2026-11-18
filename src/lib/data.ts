@@ -1,7 +1,15 @@
 import videoData from "@/data/videos.json";
 import { VideoData, Playlist, Category } from "./types";
+import { sortByVerse } from "./aliyah";
 
-const data = videoData as VideoData;
+const rawData = videoData as VideoData;
+
+// Parsha classes are shown in the order of the text, not YouTube playlist order.
+const data: VideoData = {
+  playlists: rawData.playlists.map((p) =>
+    p.category === "parsha" ? { ...p, videos: sortByVerse(p.videos) } : p
+  ),
+};
 
 export function getAllPlaylists(): Playlist[] {
   return data.playlists;

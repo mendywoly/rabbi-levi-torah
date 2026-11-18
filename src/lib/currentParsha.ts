@@ -75,7 +75,15 @@ function upcomingShabbat(now: Date): Date {
   return date;
 }
 
-export function getCurrentParsha(now: Date = new Date()): ParshaInfo | null {
+export interface CurrentReading {
+  // Playlist(s) for this Shabbat's reading. Two only when a double parsha
+  // whose halves have separate playlists is read together (Chukas-Balak).
+  infos: ParshaInfo[];
+  // hebcal names of the parsha(s) read this Shabbat, e.g. ["Matot", "Masei"]
+  parshiyot: string[];
+}
+
+export function getCurrentReading(now: Date = new Date()): CurrentReading | null {
   const shabbat = upcomingShabbat(now);
 
   // Use this Shabbat's reading (diaspora). If it is a holiday reading or a
@@ -84,9 +92,12 @@ export function getCurrentParsha(now: Date = new Date()): ParshaInfo | null {
     const hdate = new HDate(shabbat);
     const reading = getSedra(hdate.getFullYear(), false).lookup(hdate);
     if (!reading.chag) {
-      const num = Array.isArray(reading.num) ? reading.num[0] : reading.num;
-      const name = num ? PLAYLIST_BY_PARSHA_NUM[num] : undefined;
-      if (name) return PARSHA_ORDER.find((p) => p.name === name) || null;
+      const nums = Array.isArray(reading.num) ? reading.num : [reading.num];
+      const names = [...new Set(nums.map((n) => PLAYLIST_BY_PARSHA_NUM[n]))];
+      const infos = names.flatMap(
+        (name) => PARSHA_ORDER.find((p) => p.name === name) ?? []
+      );
+      if (infos.length > 0) return { infos, parshiyot: reading.parsha };
     }
     shabbat.setDate(shabbat.getDate() + 7);
   }
@@ -94,7 +105,6 @@ export function getCurrentParsha(now: Date = new Date()): ParshaInfo | null {
   return null;
 }
 
-export function getCurrentParshaName(): string | null {
-  const parsha = getCurrentParsha();
-  return parsha?.name || null;
+export function getCurrentParshaNames(): string[] {
+  return getCurrentReading()?.infos.map((p) => p.name) ?? [];
 }

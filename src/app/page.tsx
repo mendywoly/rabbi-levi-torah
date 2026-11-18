@@ -1,19 +1,10 @@
 import Link from "next/link";
 import { getCategoryStats, getTotalVideoCount } from "@/lib/data";
 import { CATEGORY_LABELS, Category } from "@/lib/types";
-import { getCurrentParsha, getCurrentParshaName } from "@/lib/currentParsha";
-import { getPlaylistByName } from "@/lib/data";
+import { getCurrentReading } from "@/lib/currentParsha";
+import { classesForReading } from "@/lib/aliyah";
+import { getPlaylistByName, slugify } from "@/lib/data";
 import { formatDuration } from "@/lib/parsha";
-
-const DAILY_LABELS = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Shabbat",
-];
 
 const CATEGORY_ICONS: Record<Category, string> = {
   parsha: "📖",
@@ -31,11 +22,14 @@ export const revalidate = 3600;
 export default function Home() {
   const totalVideos = getTotalVideoCount();
   const stats = getCategoryStats();
-  const currentParshaName = getCurrentParshaName();
-  const currentParshaPlaylist = currentParshaName
-    ? getPlaylistByName(currentParshaName)
-    : null;
-  const currentParshaInfo = getCurrentParsha();
+  const currentReading = getCurrentReading();
+  const currentInfos = currentReading?.infos ?? [];
+  const currentClasses = currentReading
+    ? classesForReading(
+        currentInfos.flatMap((p) => getPlaylistByName(p.name)?.videos ?? []),
+        currentReading.parshiyot
+      )
+    : [];
 
   return (
     <div>
@@ -77,7 +71,7 @@ export default function Home() {
       </section>
 
       {/* Current Parsha Highlight */}
-      {currentParshaPlaylist && currentParshaInfo && (
+      {currentClasses.length > 0 && (
         <section className="border-b border-border bg-accent/10 px-4 py-10">
           <div className="mx-auto max-w-6xl">
             <div className="mb-6 flex items-center justify-between">
@@ -86,26 +80,26 @@ export default function Home() {
                   This Week&apos;s Parsha
                 </p>
                 <h2 className="text-2xl font-bold text-primary">
-                  Parshat {currentParshaInfo.name}{" "}
+                  Parshat {currentInfos.map((p) => p.name).join("-")}{" "}
                   <span className="text-lg font-normal text-muted">
-                    {currentParshaInfo.hebrew}
+                    {currentInfos.map((p) => p.hebrew).join(" ")}
                   </span>
                 </h2>
                 <p className="text-sm text-muted">
-                  {currentParshaInfo.book} &middot;{" "}
-                  {currentParshaPlaylist.videos.length} classes available
+                  {currentInfos[0].book} &middot;{" "}
+                  {currentClasses.length} classes available
                 </p>
               </div>
               <Link
-                href={`/parsha/${encodeURIComponent(currentParshaInfo.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""))}`}
+                href={currentInfos.length === 1 ? `/parsha/${slugify(currentInfos[0].name)}` : "/parsha"}
                 className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-light"
               >
                 View All →
               </Link>
             </div>
             <div className="space-y-2">
-              {currentParshaPlaylist.videos.map((video, i) => {
-                const dayLabel = i < DAILY_LABELS.length ? DAILY_LABELS[i] : `Class ${i + 1}`;
+              {currentClasses.map(({ video, day }) => {
+                const dayLabel = day ?? "Class";
                 return (
                   <a
                     key={video.id}

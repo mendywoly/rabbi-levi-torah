@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getParshaPlaylists, slugify } from "@/lib/data";
 import { PARSHA_ORDER, BOOKS, getParshasByBook, ParshaInfo } from "@/lib/parsha";
-import { getCurrentParshaName } from "@/lib/currentParsha";
+import { getCurrentParshaNames } from "@/lib/currentParsha";
 import { Playlist } from "@/lib/types";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export const revalidate = 3600;
 
 export default function ParshaIndex() {
   const parshaPlaylists = getParshaPlaylists();
-  const currentParshaName = getCurrentParshaName();
+  const currentParshaNames = getCurrentParshaNames();
 
   // Build a map of playlist name -> playlist for quick lookup
   const playlistMap = new Map<string, Playlist>();
@@ -49,7 +49,7 @@ export default function ParshaIndex() {
                 {parshas.map((parsha: ParshaInfo) => {
                   const playlist = playlistMap.get(parsha.name);
                   const videoCount = playlist?.videos.length ?? 0;
-                  const isCurrent = parsha.name === currentParshaName;
+                  const isCurrent = currentParshaNames.includes(parsha.name);
 
                   return (
                     <Link

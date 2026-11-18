@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getAllPlaylists, getPlaylistBySlug, slugify } from "@/lib/data";
 import { getParshaByName } from "@/lib/parsha";
-import { getCurrentParshaName } from "@/lib/currentParsha";
+import { getCurrentParshaNames } from "@/lib/currentParsha";
 import { VideoListItem } from "@/components/VideoCard";
 
 // Re-render hourly so the current parsha rolls over without a redeploy.
@@ -30,8 +30,7 @@ export default async function ParshaPage({
   if (!playlist) notFound();
 
   const parshaInfo = getParshaByName(playlist.name);
-  const currentParshaName = getCurrentParshaName();
-  const isCurrent = playlist.name === currentParshaName;
+    const isCurrent = getCurrentParshaNames().includes(playlist.name);
 
   return (
     <div className="px-4 py-10">

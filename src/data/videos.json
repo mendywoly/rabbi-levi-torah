@@ -2693,6 +2693,12 @@
           "url": "https://www.youtube.com/watch?v=eMWSt7Uc6hk"
         },
         {
+          "id": "O5WWZDZDStI",
+          "title": "Exodus 25_17-25_30",
+          "duration": 1618,
+          "url": "https://www.youtube.com/watch?v=O5WWZDZDStI"
+        },
+        {
           "id": "rd1Zb8VrHzQ",
           "title": "Exodus 25_31-26_14",
           "duration": 3364,
@@ -2823,12 +2829,6 @@
           "title": "Exodus 20_15-20_23",
           "duration": 1599,
           "url": "https://www.youtube.com/watch?v=EH7cCaYhhA8"
-        },
-        {
-          "id": "O5WWZDZDStI",
-          "title": "Exodus 25_17-25_30",
-          "duration": 1618,
-          "url": "https://www.youtube.com/watch?v=O5WWZDZDStI"
         }
       ]
     },
@@ -2978,7 +2978,7 @@
       "videos": [
         {
           "id": "zLalpMcOpNI",
-          "title": "Exodus 11-117",
+          "title": "Exodus 1_1-1_17",
           "duration": 2432,
           "url": "https://www.youtube.com/watch?v=zLalpMcOpNI"
         },
@@ -3374,7 +3374,7 @@
       "videos": [
         {
           "id": "GFoYpHrM6wc",
-          "title": "Bereishis_ Chapter 11, Verses 10-26 \u201cHaving Patients\u201d",
+          "title": "Bereishis_ Chapter 11, Verses 10-26 “Having Patients”",
           "duration": 2746,
           "url": "https://www.youtube.com/watch?v=GFoYpHrM6wc"
         }
